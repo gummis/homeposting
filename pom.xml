@@ -6,11 +6,26 @@
   <packaging>war</packaging>
   <version>1.0</version>
   <name>homeposting</name>
+
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <maven.compiler.source>1.6</maven.compiler.source>
     <maven.compiler.target>1.6</maven.compiler.target>
+    <version.richfaces>4.3.4.Final</version.richfaces>
   </properties>
+
+  <dependencyManagement>
+    <dependencies>
+      <dependency>
+         <groupId>org.richfaces</groupId>
+         <artifactId>richfaces-bom</artifactId>
+         <version>${version.richfaces}</version>
+         <type>pom</type>
+         <scope>import</scope>
+      </dependency>
+    </dependencies>
+  </dependencyManagement>
+
   <dependencies>
     <dependency>
       <groupId>org.jboss.spec</groupId>
@@ -19,6 +34,18 @@
       <type>pom</type>
       <scope>provided</scope>
     </dependency>
+    
+    <!-- Import the RichFaces core library -->
+    <dependency>
+        <groupId>org.richfaces.core</groupId>
+        <artifactId>richfaces-core-impl</artifactId>
+    </dependency>
+    <!-- Import the RichFaces components -->
+    <dependency>
+        <groupId>org.richfaces.ui</groupId>
+        <artifactId>richfaces-components-ui</artifactId>
+    </dependency>
+    
   </dependencies>
   <profiles>
     <profile>
