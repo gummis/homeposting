@@ -1,0 +1,31 @@
+#page{
+}
+
+#header{
+	
+}
+
+#mainmenu{
+}
+
+#user{
+	
+}
+
+#submenu{
+	width: 150px;
+	float: left;
+	overflow: hidden;
+	position: relative;
+}
+
+#content{
+	margin-left: 150px;
+}
+
+#footer{
+	clear: both;
+}
+
+
+
