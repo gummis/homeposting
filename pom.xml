@@ -12,6 +12,7 @@
     <maven.compiler.source>1.6</maven.compiler.source>
     <maven.compiler.target>1.6</maven.compiler.target>
     <version.richfaces>4.3.4.Final</version.richfaces>
+    <version.rewrite>2.0.8.Final</version.rewrite>
   </properties>
 
   <dependencyManagement>
@@ -46,7 +47,19 @@
         <artifactId>richfaces-components-ui</artifactId>
     </dependency>
     
+	<dependency>
+	   <groupId>org.ocpsoft.rewrite</groupId>
+	   <artifactId>rewrite-servlet</artifactId>
+	   <version>${version.rewrite}</version>
+	</dependency>
+	<dependency>
+	   <groupId>org.ocpsoft.rewrite</groupId>
+	   <artifactId>rewrite-config-prettyfaces</artifactId>
+	   <version>${version.rewrite}</version>
+	</dependency>
+    
   </dependencies>
+  
   <profiles>
     <profile>
      <!-- When built in OpenShift the 'openshift' profile will be used when invoking mvn. -->
