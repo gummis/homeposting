@@ -64,11 +64,7 @@
 	    <artifactId>rewrite-config-prettyfaces</artifactId>
 	    <version>${version.rewrite}</version>
 	</dependency>
-    <dependency>
-      <groupId>org.apache.commons</groupId>
-      <artifactId>commons-lang3</artifactId>
-      <version>3.0</version>
-    </dependency>
+    
   </dependencies>
   
   <profiles>

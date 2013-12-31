@@ -1,12 +1,13 @@
-body {
+html, body {
 	font-family: Verdana, Arial, Helvetica, sans-serif;
 	font-size: 12px;
+	background-color: #F8ECEC;
 	color: #000000;
-	background-color: #FFFFFF;
-	margin: 0px;
-}
-div, h1, h2, h3, h4, h5, h6, p, ul, ol, li, form, input, textarea {
 	padding: 0px;
+	margin: 0px;
+	height:100%;
+}
+div, h1, h2, h3, h4, h5, h6, p, ul, ol, li, form{
 	margin: 0px;
 }
 .main {
@@ -14,16 +15,15 @@ div, h1, h2, h3, h4, h5, h6, p, ul, ol, li, form, input, textarea {
 	margin: 0px auto;
 }
 .page {
-	width: 997px;
-	float: left;
-}
-.page-in {
 	width: 995px;
 	float: left;
 	border-top: solid 8px #000000;
 	border-right: solid 1px #000000;
 	border-bottom: solid 2px #000000;
 	border-left: solid 1px #000000;
+  	margin-bottom: 50px;
+	min-height:100%;
+    position:relative;
 }
 .header {
 	width: 995px;
@@ -44,15 +44,30 @@ div, h1, h2, h3, h4, h5, h6, p, ul, ol, li, form, input, textarea {
 	text-decoration:none;
 	font-weight:normal;
 	}
+	
 .topmenu {
+	text-align: center;
+	width: auto;
+	height: 53px;
+	float: left;
+}
+
+.userview {
+	text-align: center;
+	/*width: 395px;*/
+	width: auto;
+	height: 53px;
+	float: right;
+}
+ 
+.topmenuuser{
+	height: 53px;
 	background-image: url("#{resource['images:menubg.jpg']}");
 	background-repeat: repeat-x;
 	background-position: left top;
-	text-align: center;
-	width: 800px;
-	height: 43px;
-	float: left;
+	width: 100%;
 }
+
 .topmenu ul {
 	margin:0px;
 	padding:0px 0px 0px 10px;
@@ -69,8 +84,8 @@ div, h1, h2, h3, h4, h5, h6, p, ul, ol, li, form, input, textarea {
 	text-transform:uppercase;
 	float:left;
 	display:block;
-	line-height:43px;
-	background:url("#{resource['images:devider.jpg']}") no-repeat left top;
+	line-height:53px;
+	background:url("#{resource['images:divider.jpg']}") no-repeat left top;
 }
 .topmenu ul li a {
 	font-family:Verdana, Arial, Helvetica, sans-serif;
@@ -85,15 +100,6 @@ div, h1, h2, h3, h4, h5, h6, p, ul, ol, li, form, input, textarea {
 	color: #f37126;
 	text-decoration:none;
 	font-weight:bold;
-}
-.userview {
-	background-image: url("#{resource['images:menubg.jpg']}");
-	background-repeat: repeat-x;
-	background-position: left top;
-	text-align: center;
-	width: 195px;
-	height: 43px;
-	float: left;
 }
 
 .addressview {
@@ -117,14 +123,12 @@ div, h1, h2, h3, h4, h5, h6, p, ul, ol, li, form, input, textarea {
 .mid-right {
 	margin:0px;
 	padding:0px;
-	background:#FFFFFF;
 	width:704px;
 	float:left;
 	}
 .mid-left-top {
 	margin:0px;
 	padding:0px;
-	background:url("#{resource['images:right-bg-top.jpg']}") no-repeat left top;
 	width:291px;
 	float:left;
 	}
@@ -205,9 +209,11 @@ p.txt-1 {
 
 .footer {
 	margin:0px;
-	padding:14px 0px 25px 0px;
 	width: 995px;
 	float: left;
+	position:absolute;
+   	bottom:0;
+   	height:39px;   /* Height of the footer */
 	background:#222223;
 }
 p.copyright-text {

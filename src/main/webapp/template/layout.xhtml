@@ -1,35 +1,40 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
-	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:a4j="http://richfaces.org/a4j"
-	xmlns:rich="http://richfaces.org/rich">
+	xmlns:pretty="http://ocpsoft.com/prettyfaces"
+      xmlns:c="http://java.sun.com/jsp/jstl/core">
 <h:head>
 	<h:outputStylesheet name="layout-styles.css" library="css" />
+	<h:outputStylesheet name="styles.css" library="css" />
 </h:head>
 
 <h:body>
-	<div class="main">
-		<div class="page">
-			<div class="page-in">
+	<div class="main" id="fullViewId">
+			<div class="page">
 				<div class="header">
-					<div class="topmenu">
-						<ul>
-							<li><a href="#">Start</a></li>
-
-							<li><a href="#">Księgowanie</a></li>
-
-							<li><a href="#">Raportowanie</a></li>
-
-							<li><a href="#">Zarządzanie</a></li>
-
-						</ul>
+					<div class="topmenuuser">
+						<div class="topmenu">
+							<ul>
+								<li><pretty:link mappingId="startViewId">Start</pretty:link></li>
+								<c:if test="#{not empty sessionBean.user and sessionBean.user.userKind == 'ADMIN'}">
+									<li><pretty:link mappingId="adminViewId">Zarządzanie</pretty:link>
+								</li></c:if>
+							</ul>
+						</div>
+						<div class="betweentopmenuanduser"></div>
+						<div class="userview">
+							<c:choose>
+								<c:when test="#{empty sessionBean.user}">
+									<ui:include src="/template/unlogged.xhtml" />
+								</c:when>
+								<c:otherwise>
+									<ui:include src="/template/logged.xhtml" />
+								</c:otherwise>
+							</c:choose>
+						</div>
 					</div>
-
-					<div class="userview">
-						<a href="#">Użytkownik: slyygummis</a>
-					</div>
-
+					<div style="clear:both"></div>
+					   
 					<div class="header-img">
 						<h1>Rachunkowość domowa</h1>
 					</div>
@@ -42,24 +47,13 @@
 				<div class="mid">
 					<div class="mid-left">
 						<div class="mid-left-top">
-							<h2>Menu główne</h2>
-
-							<ul class="left-nav">
-								<li><a href="#">Zakupy<br /></a></li>
-
-								<li><a href="#">Przelewy</a></li>
-
-								<li><a href="#">Transakcja ogólna</a></li>
-
-								<li><a href="#">Inne</a></li>
-
-							</ul>
+							<ui:include src="/template/submenu.xhtml" />
 						</div>
 					</div>
 
 					<div class="mid-right">
 						<div class="gap-1">
-							<div>
+							<ui:insert name="content" >
 								<h1>Witaj</h1>
 
 								<h2>Wprowadzenie</h2>
@@ -91,8 +85,7 @@
 									A więc przykładowe konta to:
 									Portfel Mamy,Portfel Ojca,Portfel Dziecka, Konto rodziny,Konto ojca,Zadłuzenie względem osoby spoza rodziny.
 								</p>
-							</div>
-
+							</ui:insert>
 						</div>
 					</div>
 
@@ -109,13 +102,12 @@
 						alt="website templates" /></a>
 
 					<p class="copyright-text">
-						ɠCopyright 2010. Designed by <a class="footer-link"
+						Copyright 2010. Designed by <a class="footer-link"
 							target="_blank" href="http://www.htmltemplates.net/">htmltemplates.net</a>
 					</p>
 					<!--DO NOT Remove The Footer Links-->
 				</div>
 			</div>
-		</div>
 	</div>
 
 </h:body>

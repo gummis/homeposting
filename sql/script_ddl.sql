@@ -1,10 +1,11 @@
 ﻿drop table if exists USERTAB cascade;
 create table USERTAB (
 	ID serial primary key,
-	LOGIN varchar(50) not null,
+	LOGIN varchar(50) not null unique,
 	PASSWORD varchar(50) not null,
 	NAME varchar(50) not null,
-	DESCR varchar(200)
+	DESCR varchar(200),
+	KIND smallint not null
 );
 
 drop table if exists PRIVILEGE cascade;
@@ -28,7 +29,8 @@ drop table if exists SUBSYSTEM_USER cascade;
 create table SUBSYSTEM_USER (
 	ID serial primary key,
 	USER_REF integer not null references USERTAB,
-	SUBSYSTEM_REF integer not null references SUBSYSTEM
+	SUBSYSTEM_REF integer not null references SUBSYSTEM,
+	CONSTRAINT UNIQUE_USER_SUBSYSTEM UNIQUE(USER_REF,SUBSYSTEM_REF)
 );
 
 drop table if exists SUBSYSTEM_PRIVILEGE cascade;
@@ -48,7 +50,6 @@ create table ACCOUNT (
 	NAME varchar(50) not null,
 	DESCR varchar(100),
 	INITIAL_STATE integer not null default 0,
-	USERTAB_OWNER_REF integer references USERTAB,
 	SUBSYSTEM_REF integer not null references SUBSYSTEM
 );
 
@@ -56,7 +57,8 @@ drop table if exists TRANS_KIND cascade;
 create table TRANS_KIND (
 	ID serial primary key,
 	NAME varchar(50) not null,
-	DESCR varchar(200)
+	DESCR varchar(200),
+	SUBSYSTEM_REF integer not null references SUBSYSTEM
 );
 
 drop table if exists TRANS_SUB_KIND cascade;
@@ -64,7 +66,6 @@ create table TRANS_SUB_KIND (
 	ID serial primary key,
 	NAME varchar(50) not null,
 	DESCR varchar(200),
-	CODE integer not null,
 	KIND_REF integer not null references TRANS_KIND
 );
 

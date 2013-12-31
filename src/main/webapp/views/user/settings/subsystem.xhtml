@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:rich="http://richfaces.org/rich"
+    template="../../../template/layout.xhtml" 
+    xmlns:c="http://java.sun.com/jsp/jstl/core"
+                >
+	<ui:define name="content">
+		<h:form id = "settingsSubsystemForm">
+			<rich:tabPanel switchType="client">
+        		<rich:tab name="Zarządzanie" id="controlSubsystemTabId">
+        			<rich:panel header="Tworzenie podsystemu">
+        				<h:panelGrid columns="2">
+	        				<h:outputLabel for="inputNameField" styleClass="labelStyle" value="Nazwa: "/>
+							<h:inputText id="inputNameField" value="#{settingsSubsystemManagedBean.name}" size="50" />
+			
+							<h:outputLabel for="inputDescrField" styleClass="labelStyle" value="Opis: "/>
+							<h:inputTextarea id="inputDescrField" rows="4" cols="51" value="#{settingsSubsystemManagedBean.description}" />
+
+							<h:commandButton action="#{settingsSubsystemManagedBean.createSubsystemAction}" value="Utwórz" />
+						</h:panelGrid>
+        			</rich:panel>
+		        </rich:tab>
+		        <rich:tab name="Użytkownicy" id="usersAddToSubsystemTabId" >
+        			<rich:panel header="Dodawanie użytownika do podsystemu">
+        				<h:inputText value="#{settingsSubsystemManagedBean.idAddedUser}"/>
+						<h:commandButton action="#{settingsSubsystemManagedBean.addUserToSubsystemAction}" value="Dodaj" />
+        			</rich:panel>
+        			<rich:panel id="usersTableId" header="Przydzieleni użytkownicy">
+        				<h:dataTable border="1" value="#{settingsSubsystemManagedBean.usersShortcuts}" var="u">
+        				    <h:column>
+    							<f:facet name="header">ID</f:facet>
+			    				#{u.id}
+			    			</h:column>
+        				    <h:column>
+    							<f:facet name="header">Nazwa</f:facet>
+			    				#{u.name}
+			    			</h:column>
+			    		</h:dataTable>
+        			</rich:panel>
+		        </rich:tab>
+		        <rich:tab name="Konta" id="accountsSubsystemTabId">
+        			<rich:panel header="Dodawanie konta do podsystemu">
+        				<h:panelGrid columns="2">
+	        				<h:outputLabel for="inputNameAccountField" styleClass="labelStyle" value="Nazwa: "/>
+							<h:inputText id="inputNameAccountField" value="#{settingsSubsystemManagedBean.accountName}" size="50" />
+			
+							<h:outputLabel for="inputAccountDescrField" styleClass="labelStyle" value="Opis: "/>
+							<h:inputTextarea id="inputAccountDescrField" rows="4" cols="51" value="#{settingsSubsystemManagedBean.accountDescription}" />
+	
+							<h:outputLabel for="inputInitialStateField" styleClass="labelStyle" value="Inicjalny stan (w groszach): "/>
+							<h:inputText id="inputInitialStateField" value="#{settingsSubsystemManagedBean.accountInitialState}" size="50"/>
+	
+							<h:commandButton action="#{settingsSubsystemManagedBean.addAccountToSubsystemAction}" value="Dodaj" />
+						</h:panelGrid>
+        			</rich:panel>
+        			<rich:panel id="accountsTableId" header="Dostępne konta">
+        				<h:dataTable border="1" value="#{settingsSubsystemManagedBean.accounts}" var="a">
+        				    <h:column>
+    							<f:facet name="header">ID</f:facet>
+			    				#{a.id}
+			    			</h:column>
+        				    <h:column>
+    							<f:facet name="header">Nazwa</f:facet>
+			    				#{a.name}
+			    			</h:column>
+        				    <h:column>
+    							<f:facet name="header">Inicjalny stan</f:facet>
+			    				#{a.initialState}
+			    			</h:column>
+        				    <h:column>
+    							<f:facet name="header">Opis</f:facet>
+			    				#{a.description}
+			    			</h:column>
+			    		</h:dataTable>
+        			</rich:panel>
+		        </rich:tab>
+		        <rich:tab name="Typy transakcji" id="typesTransactionSubsystemTabId">
+        			<rich:panel header="Dodawanie typów transakcji">
+        				<h:panelGrid columns="2">
+	        			<h:outputLabel for="inputNameKindTransactionField" styleClass="labelStyle" value="Nazwa: "/>
+						<h:inputText id="inputNameKindTransactionField" value="#{settingsSubsystemManagedBean.kindTransactionName}" size="50" />
+						<h:outputLabel for="inputKindTransactionDescrField" styleClass="labelStyle" value="Opis: "/>
+						<h:inputTextarea id="inputKindTransactionDescrField" rows="4" cols="51" value="#{settingsSubsystemManagedBean.kindTransactionDescription}" />
+						<h:commandButton action="#{settingsSubsystemManagedBean.addKindTransactionToSubsystemAction}" value="Dodaj" >
+						</h:commandButton>
+						</h:panelGrid>
+        			</rich:panel>
+        			<rich:panel header="Dodawanie podtypów transakcji">
+        				<h:panelGrid columns="2">
+	        			<h:outputLabel for="inputKindIdSubkindTransactionField" styleClass="labelStyle" value="Id typu: "/>
+						<h:inputText id="inputKindIdSubkindTransactionField" value="#{settingsSubsystemManagedBean.subkindTransactionKindId}" size="50" />
+	        			<h:outputLabel for="inputNameSubkindTransactionField" styleClass="labelStyle" value="Nazwa: "/>
+						<h:inputText id="inputNameSubkindTransactionField" value="#{settingsSubsystemManagedBean.subkindTransactionName}" size="50" />
+						<h:outputLabel for="inputSubkindTransactionDescrField" styleClass="labelStyle" value="Opis: "/>
+						<h:inputTextarea id="inputSubkindTransactionDescrField" rows="4" cols="51" value="#{settingsSubsystemManagedBean.subkindTransactionDescription}" />
+						<h:commandButton action="#{settingsSubsystemManagedBean.addSubkindTransactionToSubsystemAction}" value="Dodaj" >
+						</h:commandButton>
+						</h:panelGrid>
+        			</rich:panel>
+        			<rich:panel id="kindsTransactionTreeId" header="Dostępne typy transkacji">
+        				<ul>
+						<c:forEach items="#{settingsSubsystemManagedBean.transactionTypes}" var="type_">
+							<li style="color: blue">#{type_.left}
+								<ul>
+								<c:forEach items="#{type_.right}" var="subtype_">
+									<li style="color: red">#{subtype_}</li>
+								</c:forEach>
+								</ul>
+							</li>
+						</c:forEach>
+        				</ul>
+        			</rich:panel>
+		        </rich:tab>
+		    </rich:tabPanel>
+		</h:form>
+	</ui:define>
+</ui:composition>

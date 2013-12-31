@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:pretty="http://ocpsoft.com/prettyfaces">
+
+<ui:composition>
+	<h:form>
+		<h:panelGrid columns="2" >
+			<h:outputText styleClass="textStyle" value="Użytkownik: #{sessionBean.user.login}(#{sessionBean.user.name})" />
+			<h:commandLink action="#{sessionBean.logoutAction}" value="Wyloguj" />
+			<h:panelGrid columns="2">
+				<h:outputLabel for="selectSubsystemComboId" value="Podsystem: " styleClass="labelStyle"/>
+				<rich:select id="selectSubsystemComboId" defaultLabel="Brak podsystemu" enableManualInput="true" value="#{sessionBean.selectedSubsystemId}" selectFirst="true">
+		            <f:selectItems value="#{sessionBean.subsystemsItems}"/>
+	      		</rich:select>
+      		</h:panelGrid>
+      		<pretty:link mappingId="settingsUserViewId">Ustawienia</pretty:link>
+		</h:panelGrid>
+		<rich:tooltip id="tt1" styleClass="tooltip" layout="block" showEvent="click">
+			<h:panelGrid columns="2">
+				<h:outputText value="Login użytkownika: " styleClass="textStyle"/>
+				<h:outputText value="#{sessionBean.user.login}" styleClass="textStyle"/>
+				<h:outputText value="Nazwa użytkownika: " styleClass="textStyle"/>
+				<h:outputText value="#{sessionBean.user.name}" styleClass="textStyle"/>
+				<h:outputText value="Identyfikator użytkownika: " styleClass="textStyle"/>
+				<h:outputText value="#{sessionBean.user.id}" styleClass="textStyle"/>
+      		</h:panelGrid>
+        </rich:tooltip>
+	</h:form>
+</ui:composition>
+</html>
+
+
+

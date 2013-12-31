@@ -2,8 +2,11 @@
   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
   xsi:schemaLocation="http://ocpsoft.org/schema/rewrite-config-prettyfaces
                       http://ocpsoft.org/xml/ns/prettyfaces/rewrite-config-prettyfaces.xsd">
-	<url-mapping id="proba">
-		<pattern value="/proba/#{first}" />
+	<url-mapping id="startViewId">
+		<pattern value="/" />
 		<view-id value="/default.xhtml" /> <!-- Non JSF View Id -->
 	</url-mapping>
+	
+
+	
 </pretty-config>

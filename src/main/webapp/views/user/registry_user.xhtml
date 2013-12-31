@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:rich="http://richfaces.org/rich"
+    template="../../template/layout.xhtml" >
+	<ui:define name="content">
+		<h:form id = "registryUserForm">
+			<rich:panel header="Zrejestrowanie użytkownika">
+				<h:panelGrid columns="2">
+					<h:outputLabel for="inputLoginField" styleClass="labelStyle" value="Login: "/>
+					<h:inputText id="inputLoginField" value="#{registryUserManagedBean.login}" size="50" required="true" />
+				 
+					<h:outputLabel for="inputPassField" styleClass="labelStyle" value="Hasło: "/>
+					<h:inputText id="inputPassField" value="#{registryUserManagedBean.password}" size="50" required="true" />
+		
+					<h:outputLabel for="inputRePassField" styleClass="labelStyle" value="Ponownie Hasło: "/>
+					<h:inputText id="inputRePassField" value="#{registryUserManagedBean.rePassword}" size="50" required="true" />
+		
+					<h:outputLabel for="inputNameField" styleClass="labelStyle" value="Nazwa: "/>
+					<h:inputText id="inputNameField" value="#{registryUserManagedBean.name}" size="50" required="true" />
+		
+					<h:outputLabel for="inputDescrField" styleClass="labelStyle" value="Opis: "/>
+					<h:inputTextarea id="inputDescrField" rows="4" cols="51" value="#{registryUserManagedBean.description}" />
+		
+					<h:commandButton action="#{registryUserManagedBean.registryUserAction}" value="Zarejestruj" />
+					
+				</h:panelGrid>
+			</rich:panel>
+		</h:form>
+		
+	</ui:define>
+</ui:composition>
