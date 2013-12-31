@@ -1,0 +1,33 @@
+h
+o
+m
+e
+p
+o
+s
+t
+i
+n
+g
+-
+  Domain:     bettingapp
+  Created:    Dec 25 11:19 PM
+  Gears:      1 (defaults to small)
+  Git URL:    ssh://52bb59fb4382ecc236000047@homeposting-bettingapp.rhcloud.com/~/git/homeposting.git/
+  SSH:        52bb59fb4382ecc236000047@homeposting-bettingapp.rhcloud.com
+  Deployment: auto (on git push)
+
+  
+    Gears: Located with postgresql-9.2
+
+  
+    Gears:          Located with jbossas-7
+    Connection URL: postgresql://$OPENSHIFT_POSTGRESQL_DB_HOST:$OPENSHIFT_POSTGRESQL_DB_PORT
+    Database Name:  homeposting
+    Password:       mMFpATE_ngwt
+    Username:       admindrstsqu
+
+You
+have
+1
+applications
