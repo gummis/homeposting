@@ -13,8 +13,8 @@ import javax.ejb.Local;
 @Local
 public interface SubsystemsDao {
 	public void createSubsystem(Subsystem subsystem);
-	public List<Shortcut> getAllUserSubsystemsShortucts(Integer id);
-	public Subsystem getUserById(Integer id);
+	public List<Shortcut> getAllSubsystemsShortuctsOfUser(Integer id);
+	public Subsystem getSubsystemById(Integer id);
 	public void addUserToSubsystem(Integer idAddedUser, Integer id);
 	public void addAccountToSubsystem(Subsystem subsystem, Account account);
 	public void addTransactionKindToSubsystem(Subsystem subsystem, TransactionKind kind);

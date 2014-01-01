@@ -27,7 +27,7 @@ public class SubsystemsDaoImpl implements SubsystemsDao {
 		em.persist(subsystem);
 	}
 
-	public List<Shortcut> getAllUserSubsystemsShortucts(Integer id) {
+	public List<Shortcut> getAllSubsystemsShortuctsOfUser(Integer id) {
 
 		String queryStr = "select new homeposting.app.common.data.Shortcut(ss.id, ss.name) from Subsystem as ss";
 		Query query = em.createQuery(queryStr);
@@ -36,12 +36,14 @@ public class SubsystemsDaoImpl implements SubsystemsDao {
 		return list;
 	}
 
-	public Subsystem getUserById(Integer id) {
+	public Subsystem getSubsystemById(Integer id) {
 		Subsystem s = em.find(Subsystem.class, id);
-		for(TransactionKind tk : s.getTransactionKinds()){
-			tk.getSubkinds().size();
+		if(s != null){
+			for(TransactionKind tk : s.getTransactionKinds()){
+				tk.getSubkinds().size();
+			}
+			s.getAccounts().size();
 		}
-		s.getAccounts().size();
 		return s;
 	}
 

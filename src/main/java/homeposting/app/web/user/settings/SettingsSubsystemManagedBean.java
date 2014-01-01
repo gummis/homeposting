@@ -148,11 +148,18 @@ public class SettingsSubsystemManagedBean implements Serializable {
 	}
 	
 	public List<Account> getAccounts(){
-		return SessionBean.getInstance().getSelectedSubsystem().getAccounts();
+		Subsystem subsystem = SessionBean.getInstance().getSelectedSubsystem();
+		if(subsystem == null){
+			return new ArrayList<Account>();
+		}
+		return subsystem.getAccounts();
 	}
 
 	public List<Shortcut> getUsersShortcuts(){
 		Subsystem subsystem = SessionBean.getInstance().getSelectedSubsystem();
+		if(subsystem == null){
+			return new ArrayList<Shortcut>();
+		}
 		List<Shortcut> col = usersDao.getUsersShortcutsBySubsystemId(subsystem.getId());
 		return col;
 	}
@@ -208,14 +215,17 @@ public class SettingsSubsystemManagedBean implements Serializable {
 		if(tree == null){
 			
 			tree = new ArrayList<Pair<String,List<String>>>();
-			for(TransactionKind tk : SessionBean.getInstance().getSelectedSubsystem().getTransactionKinds()){
-				List<String> list = new ArrayList<String>();
-				if(tk.getSubkinds() != null){
-					for(TransactionSubkind stk : tk.getSubkinds()){
-						list.add("" + stk.getId() + ". " + stk.getName());
+			Subsystem subsystem = SessionBean.getInstance().getSelectedSubsystem();
+			if(subsystem != null && subsystem.getTransactionKinds() != null){
+				for(TransactionKind tk : subsystem.getTransactionKinds()){
+					List<String> list = new ArrayList<String>();
+					if(tk.getSubkinds() != null){
+						for(TransactionSubkind stk : tk.getSubkinds()){
+							list.add("" + stk.getId() + ". " + stk.getName());
+						}
 					}
+					tree.add(new ImmutablePair<String,List<String>>("" + tk.getId() + ". " + tk.getName(), list));
 				}
-				tree.add(new ImmutablePair<String,List<String>>("" + tk.getId() + ". " + tk.getName(), list));
 			}
 		}
 		return tree;

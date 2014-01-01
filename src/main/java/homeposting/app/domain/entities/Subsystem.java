@@ -1,6 +1,7 @@
 package homeposting.app.domain.entities;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -92,6 +93,9 @@ public class Subsystem implements Serializable {
 	
 	public void addTransactionKind(TransactionKind kind) {
 		kind.setSubsystem(this);
+		if(transactionKinds == null){
+			transactionKinds = new ArrayList<TransactionKind>();
+		}
 		transactionKinds.add(kind);
 	}
 

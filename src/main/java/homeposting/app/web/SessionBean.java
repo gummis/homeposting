@@ -81,7 +81,7 @@ public class SessionBean {
 	}
 
 	private void reloadSubsystemsShortcuts() {
-		List<Shortcut> shortcuts = subsystemsDao.getAllUserSubsystemsShortucts(user.getId());
+		List<Shortcut> shortcuts = subsystemsDao.getAllSubsystemsShortuctsOfUser(user.getId());
 		if(!shortcuts.isEmpty()){
 			selectSubsystem(shortcuts.get(0).getId());
 			subsystemsItems = Shortcut.toSelectItemList(shortcuts);
@@ -94,7 +94,7 @@ public class SessionBean {
 
 	private void selectSubsystem(Integer id) {
 		if(selectedSubsystem == null || !selectedSubsystem.getId().equals(id) ){
-			selectedSubsystem = subsystemsDao.getUserById(id);
+			selectedSubsystem = subsystemsDao.getSubsystemById(id);
 		}
 	}
 

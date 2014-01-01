@@ -1,6 +1,7 @@
 package homeposting.app.domain.entities;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -13,7 +14,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.persistence.criteria.Fetch;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
@@ -85,6 +85,9 @@ public class TransactionKind implements Serializable {
 	
 	public void addTransactionSubkind(TransactionSubkind kind) {
 		kind.setTransactionKind(this);
+		if(subkinds == null){
+			subkinds = new ArrayList<TransactionSubkind>();
+		}
 		subkinds.add(kind);
 	}
 
