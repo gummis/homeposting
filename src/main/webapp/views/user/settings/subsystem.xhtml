@@ -90,14 +90,14 @@
         			</rich:panel>
         			<rich:panel header="Dodawanie podtypów transakcji">
         				<h:panelGrid columns="2">
-	        			<h:outputLabel for="inputKindIdSubkindTransactionField" styleClass="labelStyle" value="Id typu: "/>
-						<h:inputText id="inputKindIdSubkindTransactionField" value="#{settingsSubsystemManagedBean.subkindTransactionKindId}" size="50" />
-	        			<h:outputLabel for="inputNameSubkindTransactionField" styleClass="labelStyle" value="Nazwa: "/>
-						<h:inputText id="inputNameSubkindTransactionField" value="#{settingsSubsystemManagedBean.subkindTransactionName}" size="50" />
-						<h:outputLabel for="inputSubkindTransactionDescrField" styleClass="labelStyle" value="Opis: "/>
-						<h:inputTextarea id="inputSubkindTransactionDescrField" rows="4" cols="51" value="#{settingsSubsystemManagedBean.subkindTransactionDescription}" />
-						<h:commandButton action="#{settingsSubsystemManagedBean.addSubkindTransactionToSubsystemAction}" value="Dodaj" >
-						</h:commandButton>
+		        			<h:outputLabel for="inputKindIdSubkindTransactionField" styleClass="labelStyle" value="Id typu: "/>
+							<h:inputText id="inputKindIdSubkindTransactionField" value="#{settingsSubsystemManagedBean.subkindTransactionKindId}" size="50" />
+		        			<h:outputLabel for="inputNameSubkindTransactionField" styleClass="labelStyle" value="Nazwa: "/>
+							<h:inputText id="inputNameSubkindTransactionField" value="#{settingsSubsystemManagedBean.subkindTransactionName}" size="50" />
+							<h:outputLabel for="inputSubkindTransactionDescrField" styleClass="labelStyle" value="Opis: "/>
+							<h:inputTextarea id="inputSubkindTransactionDescrField" rows="4" cols="51" value="#{settingsSubsystemManagedBean.subkindTransactionDescription}" />
+							<h:commandButton action="#{settingsSubsystemManagedBean.addSubkindTransactionToSubsystemAction}" value="Dodaj" />
+							<h:commandButton action="#{settingsSubsystemManagedBean.removeSubkindTransactionFromSubsystemAction}" value="Usuń" />
 						</h:panelGrid>
         			</rich:panel>
         			<rich:panel id="kindsTransactionTreeId" header="Dostępne typy transkacji">

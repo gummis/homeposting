@@ -91,4 +91,20 @@ public class SubsystemsDaoImpl implements SubsystemsDao {
 			subsystem.removeLastTransactionKind();
 		}
 	}
+	
+	public void removeTransactionSubkindFromSubsystem(Integer subsystemId, Integer transactionKindId, Integer transactionSubkindId){
+		Subsystem subsystem = em.find(Subsystem.class, subsystemId);
+		if(subsystem != null){
+			for(TransactionKind tk : subsystem.getTransactionKinds()){
+				if(tk.getId().equals(transactionKindId)){
+					for(TransactionSubkind tsk : tk.getSubkinds()){
+						if(tsk.getId().equals(transactionSubkindId)){
+							em.remove(tsk);
+							return;
+						}
+					}
+				}
+			}
+		}
+	}
 }

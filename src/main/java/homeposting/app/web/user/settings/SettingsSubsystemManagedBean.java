@@ -268,6 +268,31 @@ public class SettingsSubsystemManagedBean implements Serializable {
 			}
 		}
 	}
+
+	public void removeSubkindTransactionFromSubsystemAction(){
+		Subsystem subsystem = SessionBean.getInstance().getSelectedSubsystem();
+		Integer transactionKindId = null;
+		Integer transactionSubkindId = null;
+		if(subsystem != null){
+			try{
+				String ids = getSubkindTransactionKindId().trim();
+				int index = ids.indexOf(" ");
+				if(index > 0 && index < ids.length()-1){
+					transactionKindId = Integer.parseInt(ids.substring(0,index));
+					transactionSubkindId = Integer.parseInt(ids.substring(index+1));
+				}
+			}catch(Exception e){
+				return;
+			}
+			try{
+				if(transactionKindId != null){
+					subsystemsDao.removeTransactionSubkindFromSubsystem(subsystem.getId(),transactionKindId, transactionSubkindId);
+				}
+			}catch(Exception e){
+			}
+		}
+	}
+
 	@Override
 	public String toString() {
 		return "SettingsSubsystemManagedBean [name=" + name + ", description="

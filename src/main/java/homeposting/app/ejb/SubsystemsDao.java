@@ -19,4 +19,5 @@ public interface SubsystemsDao {
 	public void addAccountToSubsystem(Subsystem subsystem, Account account);
 	public void addTransactionKindToSubsystem(Subsystem subsystem, TransactionKind kind);
 	public void addTransactionSubkindToSubsystem(Subsystem subsystem, Integer transactionKindId, TransactionSubkind subkind);
+	public void removeTransactionSubkindFromSubsystem(Integer id,Integer transactionKindId, Integer transactionSubkindId);
 }
