@@ -14,6 +14,10 @@ import org.ocpsoft.logging.Logger;
 
 import com.ocpsoft.pretty.faces.annotation.URLMapping;
 
+/**
+ * Rejestrowanie użytkownika
+ * @author sly
+ */
 @ManagedBean(name = "registryUserManagedBean", eager = true)
 @ViewScoped
 @URLMapping(id = "registryUserViewId", pattern = "/user/registry", viewId = "/views/user/registry_user.xhtml")
