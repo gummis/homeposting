@@ -1,5 +1,7 @@
 package homeposting.app.web.user.settings;
 
+import homeposting.app.common.security.Security;
+
 import java.io.Serializable;
 
 import javax.faces.bean.ManagedBean;
@@ -15,7 +17,7 @@ public class SettingsUserManagedBean implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	public SettingsUserManagedBean() {
-		
+		Security.logged();
 	}/*
 	
 	public List<User> getUsersList(){

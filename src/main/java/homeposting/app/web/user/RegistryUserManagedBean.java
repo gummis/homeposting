@@ -1,5 +1,6 @@
 package homeposting.app.web.user;
 
+import homeposting.app.common.security.Security;
 import homeposting.app.domain.entities.User;
 import homeposting.app.domain.entities.UserKindEnum;
 import homeposting.app.ejb.UsersDao;
@@ -35,6 +36,7 @@ public class RegistryUserManagedBean implements Serializable {
 	private String description;
 
 	public RegistryUserManagedBean() {
+		Security.unlogged();
 	}
 
 	public String getLogin() {

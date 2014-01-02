@@ -1,9 +1,9 @@
-package homeposting.app.web;
+package homeposting.app.web.transactions.add;
 
 import homeposting.app.common.domain.SubsystemWrapper;
+import homeposting.app.common.security.Security;
 import homeposting.app.ejb.TransactionsDao;
-import homeposting.app.web.transactions.add.FlowBean;
-import homeposting.app.web.transactions.add.TransactionBean;
+import homeposting.app.web.SessionBean;
 
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
@@ -25,6 +25,7 @@ public class AddGeneralTransactionManagedBean {
 	private TransactionBean transaction;
 	
 	public AddGeneralTransactionManagedBean(){
+		Security.logged();
 		subsystem = new SubsystemWrapper( SessionBean.getInstance().getSelectedSubsystem());
 		transaction = new TransactionBean(subsystem);
 		Logger.getLogger(this.getClass()).info("Inicjalizacja bean obsługujacego tworzenie transakcji ogólnych");

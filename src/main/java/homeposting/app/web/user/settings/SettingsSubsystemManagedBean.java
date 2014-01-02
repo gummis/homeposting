@@ -1,6 +1,7 @@
 package homeposting.app.web.user.settings;
 
 import homeposting.app.common.domain.Shortcut;
+import homeposting.app.common.security.Security;
 import homeposting.app.domain.entities.Account;
 import homeposting.app.domain.entities.Subsystem;
 import homeposting.app.domain.entities.TransactionKind;
@@ -52,7 +53,7 @@ public class SettingsSubsystemManagedBean implements Serializable {
 	private String subkindTransactionDescription;
 
 	public SettingsSubsystemManagedBean() {
-		
+		Security.choiceOwnSubsystem();
 	}
 	
 	public String getName() {

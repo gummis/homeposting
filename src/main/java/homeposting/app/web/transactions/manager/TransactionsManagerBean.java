@@ -2,6 +2,7 @@ package homeposting.app.web.transactions.manager;
 
 import java.util.List;
 
+import homeposting.app.common.security.Security;
 import homeposting.app.domain.entities.Transaction;
 import homeposting.app.ejb.TransactionsDao;
 
@@ -16,13 +17,15 @@ import com.ocpsoft.pretty.faces.annotation.URLMapping;
 @URLMapping(id = "transactionsManagerId", pattern = "/transactions/manager", viewId = "/views/transactions/manager/transactionsManager.xhtml")
 public class TransactionsManagerBean {
 
+	
+	public TransactionsManagerBean(){
+		Security.logged();
+	}
+	
 	@EJB
 	TransactionsDao transactionsDao;
 	
 	private TransactionsManagerModel model;
-
-	public TransactionsManagerBean(){
-	}
 
 	public List<Transaction> getTransactions(){
 		if(model == null){
