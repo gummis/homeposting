@@ -10,7 +10,7 @@ public class Security {
 			throw new RuntimeException("Użytkownik musi być zalogowany w celu przeglądania tej strony");
 	}
 	public static void unlogged() {
-		if(SessionBean.getInstance().getUser() == null)
+		if(SessionBean.getInstance().getUser() != null)
 			throw new RuntimeException("Użytkownik musi być wylogowany w celu przeglądania tej strony");
 	}
 	
