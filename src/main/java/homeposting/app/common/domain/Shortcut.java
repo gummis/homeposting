@@ -1,4 +1,4 @@
-package homeposting.app.common.data;
+package homeposting.app.common.domain;
 
 import java.io.Serializable;
 import java.util.ArrayList;

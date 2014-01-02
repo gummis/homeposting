@@ -2,7 +2,7 @@ package homeposting.app.web.transactions.add;
 
 import java.io.Serializable;
 
-import homeposting.app.common.data.SubsystemWrapper;
+import homeposting.app.common.domain.SubsystemWrapper;
 import homeposting.app.domain.entities.Account;
 import homeposting.app.domain.entities.Subsystem;
 

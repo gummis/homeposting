@@ -44,10 +44,10 @@ public class Subsystem implements Serializable {
 	@ManyToOne()
 	private User owner;
 	
-	@OneToMany(mappedBy="subsystem", fetch = FetchType.LAZY) 
+	@OneToMany(mappedBy="subsystem") 
 	private List<Account> accounts;
 	
-	@OneToMany(mappedBy="subsystem", fetch = FetchType.LAZY) 
+	@OneToMany(mappedBy="subsystem") 
 	private List<TransactionKind> transactionKinds;
 
 	public Integer getId() {

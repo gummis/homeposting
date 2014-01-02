@@ -44,7 +44,7 @@ public class TransactionKind implements Serializable {
     @JoinColumn(name = "SUBSYSTEM_REF")  
 	private Subsystem subsystem;
 
-	@OneToMany(mappedBy="transactionKind", fetch = FetchType.LAZY)
+	@OneToMany(mappedBy="transactionKind")
 	private List<TransactionSubkind> subkinds;
 	
 	public Integer getId() {

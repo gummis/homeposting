@@ -1,6 +1,6 @@
 package homeposting.app.ejb.impl;
 
-import homeposting.app.common.data.Shortcut;
+import homeposting.app.common.domain.Shortcut;
 import homeposting.app.domain.entities.User;
 import homeposting.app.ejb.UsersDao;
 

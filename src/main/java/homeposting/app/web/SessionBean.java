@@ -2,7 +2,7 @@ package homeposting.app.web;
 
 import java.util.List;
 
-import homeposting.app.common.data.Shortcut;
+import homeposting.app.common.domain.Shortcut;
 import homeposting.app.domain.LoginUserBean;
 import homeposting.app.domain.entities.Subsystem;
 import homeposting.app.domain.entities.User;

@@ -1,6 +1,6 @@
 package homeposting.app.web.user.settings;
 
-import homeposting.app.common.data.Shortcut;
+import homeposting.app.common.domain.Shortcut;
 import homeposting.app.domain.entities.Account;
 import homeposting.app.domain.entities.Subsystem;
 import homeposting.app.domain.entities.TransactionKind;
@@ -270,27 +270,18 @@ public class SettingsSubsystemManagedBean implements Serializable {
 	}
 
 	public void removeSubkindTransactionFromSubsystemAction(){
-		Subsystem subsystem = SessionBean.getInstance().getSelectedSubsystem();
-		Integer transactionKindId = null;
-		Integer transactionSubkindId = null;
-		if(subsystem != null){
+			Integer transactionSubkindId;
 			try{
-				String ids = getSubkindTransactionKindId().trim();
-				int index = ids.indexOf(" ");
-				if(index > 0 && index < ids.length()-1){
-					transactionKindId = Integer.parseInt(ids.substring(0,index));
-					transactionSubkindId = Integer.parseInt(ids.substring(index+1));
-				}
+				transactionSubkindId = Integer.parseInt(getSubkindTransactionKindId().trim());
 			}catch(Exception e){
 				return;
 			}
 			try{
-				if(transactionKindId != null){
-					subsystemsDao.removeTransactionSubkindFromSubsystem(subsystem.getId(),transactionKindId, transactionSubkindId);
+				if(transactionSubkindId != null){
+					subsystemsDao.removeTransactionSubkindFromSubsystem(transactionSubkindId);
 				}
 			}catch(Exception e){
 			}
-		}
 	}
 
 	@Override

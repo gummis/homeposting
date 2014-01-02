@@ -1,9 +1,11 @@
 package homeposting.app.web;
 
-import homeposting.app.common.data.SubsystemWrapper;
+import homeposting.app.common.domain.SubsystemWrapper;
+import homeposting.app.ejb.TransactionsDao;
 import homeposting.app.web.transactions.add.FlowBean;
 import homeposting.app.web.transactions.add.TransactionBean;
 
+import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
@@ -16,6 +18,9 @@ import com.ocpsoft.pretty.faces.annotation.URLMapping;
 @URLMapping(id = "generalTransactionViewId", pattern = "/transactions/add/general", viewId = "/views/transactions/add/addGeneralTransaction.xhtml")
 public class AddGeneralTransactionManagedBean {
 
+	@EJB
+	private TransactionsDao transactionsDao;
+	
 	private final SubsystemWrapper subsystem;
 	private TransactionBean transaction;
 	
@@ -40,6 +45,12 @@ public class AddGeneralTransactionManagedBean {
 
 	public TransactionBean getTransaction() {
 		return transaction;
+	}
+	
+	public void saveGeneralTransactionAction(){
+		Logger.getLogger(this.getClass()).info("Zapisanie transakcji ogólnej");
+		transactionsDao.createTransaction(transaction.getTransactionEntity());
+		transaction = new TransactionBean(subsystem);
 	}
 	
 }

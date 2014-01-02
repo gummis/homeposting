@@ -1,4 +1,4 @@
-package homeposting.app.common.data;
+package homeposting.app.common.domain;
 
 import homeposting.app.domain.entities.Account;
 import homeposting.app.domain.entities.Subsystem;

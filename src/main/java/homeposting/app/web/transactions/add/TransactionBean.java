@@ -1,13 +1,18 @@
 package homeposting.app.web.transactions.add;
 
-import homeposting.app.common.data.SubsystemWrapper;
+import homeposting.app.common.domain.SubsystemWrapper;
+import homeposting.app.domain.entities.AccountFlow;
+import homeposting.app.domain.entities.Transaction;
 import homeposting.app.domain.entities.TransactionKind;
 import homeposting.app.domain.entities.TransactionSubkind;
+import homeposting.app.web.SessionBean;
 
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.faces.model.SelectItem;
 
@@ -105,6 +110,24 @@ public class TransactionBean implements Serializable {
 		this.flows = flows;
 	}
 	
-	
+	public Transaction getTransactionEntity(){
+		Transaction transaction = new Transaction();
+		transaction.setCreator(SessionBean.getInstance().getUser());
+		transaction.setDescription(getDescription());
+		transaction.setEventDate(getEventDate());
+		transaction.setIdentifier(getIdentifier());
+		transaction.setPostingDate(new Date());
+		transaction.setTransactionSubkind(getTransactionSubkind());
+		Set<AccountFlow> flows = new HashSet<AccountFlow>();
+		for(FlowBean fb : getFlows()){
+			AccountFlow af = new AccountFlow();
+			af.setFlow(fb.getCash());
+			af.setAccount(fb.getAccount());
+			af.setTransaction(transaction);
+			flows.add(af);
+		}
+		transaction.setFlows(flows);
+		return transaction;
+	}
 	
 }

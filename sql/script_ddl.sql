@@ -75,7 +75,7 @@ create table TRANSACTIONTAB (
 	DESCR varchar(200),
 	EVENT_DATE timestamp not null,
 	POSTING_DATE timestamp not null,
-	IDENTITY_NUM varchar(50),
+	IDENTIFIER varchar(50),
 	TRANS_SUB_KIND_REF integer not null references TRANS_SUB_KIND,
 	USERTAB_CREATOR_REF integer not null references USERTAB
 );

@@ -4,13 +4,66 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:rich="http://richfaces.org/rich"
-    template="../../../template/layout.xhtml" 
-    xmlns:c="http://java.sun.com/jsp/jstl/core"
-                >
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	template="../../../template/layout.xhtml"
+	>
 	<ui:define name="content">
-		<h:form id = "transactionManagerForm">
-      		<rich:panel header="Zarządzanie transakcjami">
-			</rich:panel>
-		</h:form>
+		<rich:extendedDataTable
+			value="#{transactionsManagerBean.transactions}" var="transaction"
+			id="transactionsTable" selectionMode="none">
+			<f:facet name="header">
+				<h:outputText value="Wykonane transakcje" />
+			</f:facet>
+
+			<rich:column width="50px">
+				<f:facet name="header">
+					<h:outputText value="ID" />
+				</f:facet>
+				<h:outputText value="#{transaction.id}" />
+			</rich:column>
+			<rich:column width="250px">
+				<f:facet name="header">
+					<h:outputText value="Przepływ" />
+				</f:facet>
+				<h:outputText value="#{transaction.flowString}" />
+			</rich:column>
+			<rich:column width="250">
+				<f:facet name="header">
+					<h:outputText value="Typ" />
+				</f:facet>
+				<h:outputText value="#{transaction.transactionSubkind.transactionKind.name} - #{transaction.transactionSubkind.name}" />
+			</rich:column>
+			<rich:column width="100px">
+				<f:facet name="header">
+					<h:outputText value="Zaksięgowano" />
+				</f:facet>
+				<h:outputText value="#{transaction.postingDate}" />
+			</rich:column>
+			<rich:column width="100px">
+				<f:facet name="header">
+					<h:outputText value="Data zdarzenia" />
+				</f:facet>
+				<h:outputText value="#{transaction.eventDate}" />
+			</rich:column>
+			<rich:column width="5%">
+				<f:facet name="header">
+					<h:outputText value="Dodał" />
+				</f:facet>
+				<h:outputText value="#{transaction.creator.name}" />
+			</rich:column>
+			<rich:column width="100px">
+				<f:facet name="header">
+					<h:outputText value="Opis" />
+				</f:facet>
+				<h:outputText value="#{transaction.description}" />
+			</rich:column>
+			<rich:column width="100px">
+				<f:facet name="header">
+					<h:outputText value="Identyfikator" />
+				</f:facet>
+				<h:outputText value="#{transaction.identifier}" />
+			</rich:column>
+			
+		</rich:extendedDataTable>
 	</ui:define>
 </ui:composition>

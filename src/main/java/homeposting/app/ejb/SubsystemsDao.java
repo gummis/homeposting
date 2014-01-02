@@ -1,6 +1,6 @@
 package homeposting.app.ejb;
 
-import homeposting.app.common.data.Shortcut;
+import homeposting.app.common.domain.Shortcut;
 import homeposting.app.domain.entities.Account;
 import homeposting.app.domain.entities.Subsystem;
 import homeposting.app.domain.entities.TransactionKind;
@@ -19,5 +19,5 @@ public interface SubsystemsDao {
 	public void addAccountToSubsystem(Subsystem subsystem, Account account);
 	public void addTransactionKindToSubsystem(Subsystem subsystem, TransactionKind kind);
 	public void addTransactionSubkindToSubsystem(Subsystem subsystem, Integer transactionKindId, TransactionSubkind subkind);
-	public void removeTransactionSubkindFromSubsystem(Integer id,Integer transactionKindId, Integer transactionSubkindId);
+	public void removeTransactionSubkindFromSubsystem(Integer transactionSubkindId);
 }

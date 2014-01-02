@@ -11,11 +11,11 @@ div, h1, h2, h3, h4, h5, h6, p, ul, ol, li, form{
 	margin: 0px;
 }
 .main {
-	width: 997px;
+	width: 1497px;
 	margin: 0px auto;
 }
 .page {
-	width: 995px;
+	width: 1495px;
 	float: left;
 	border-top: solid 8px #000000;
 	border-right: solid 1px #000000;
@@ -26,11 +26,11 @@ div, h1, h2, h3, h4, h5, h6, p, ul, ol, li, form{
     position:relative;
 }
 .header {
-	width: 995px;
+	width: 1495px;
 	float: left;
 }
 .header-img {
-	width: 995px;
+	width: 1495px;
 	float: left;
 	background:url("#{resource['images:header.jpg']}") no-repeat left top;
 	height:161px;
@@ -111,7 +111,7 @@ div, h1, h2, h3, h4, h5, h6, p, ul, ol, li, form{
 .mid {
 	margin:0px;
 	padding:0px 0px 20px 0px;
-	width: 995px;
+	width: 1495px;
 	float: left;
 }
 .mid-left {
@@ -123,7 +123,7 @@ div, h1, h2, h3, h4, h5, h6, p, ul, ol, li, form{
 .mid-right {
 	margin:0px;
 	padding:0px;
-	width:704px;
+	width:1204px;
 	float:left;
 	}
 .mid-left-top {
@@ -209,7 +209,7 @@ p.txt-1 {
 
 .footer {
 	margin:0px;
-	width: 995px;
+	width: 1495px;
 	float: left;
 	position:absolute;
    	bottom:0;

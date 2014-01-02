@@ -13,6 +13,7 @@
       		<rich:panel header="Dodawanie ogólnej transakcji">
       			<h:panelGrid columns="2">
       				<h:commandButton value="Przepływ" action="#{addGeneralTransactionManagedBean.addFlowAction}" reRender="addGeneralTransactionFlowsTableId"></h:commandButton>
+      				<h:commandButton value="Dodaj" action="#{addGeneralTransactionManagedBean.saveGeneralTransactionAction}" reRender="addGeneralTransactionForm"></h:commandButton>
       			</h:panelGrid>
       			<rich:panel header="Dane transakcji">
 	      			<h:panelGrid columns="2">
