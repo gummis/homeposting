@@ -1,5 +1,7 @@
 package homeposting.app.domain.entities;
 
+import homeposting.app.common.jsf.CashConverter;
+
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
@@ -17,6 +19,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+
+import com.ocpsoft.pretty.faces.config.convert.CaseConverter;
 
 @Entity()
 @Table(name = "TRANSACTIONTAB")
@@ -129,7 +133,7 @@ public class Transaction implements Serializable {
 				sb.append(";");
 			sb.append(af.getAccount().getName());
 			sb.append("=");
-			sb.append(af.getFlow());
+			sb.append(CashConverter.fromInteger(af.getFlow()));
 		}
 		return sb.toString();
 	}
