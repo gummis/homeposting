@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	template="../../../template/layout.xhtml"
+	>
+	<ui:define name="content">
+		<rich:extendedDataTable
+			value="#{accountsManagerBean.accountsInfo}" var="info"
+			id="accountsTable" selectionMode="none">
+			<f:facet name="header">
+				<h:outputText value="Konta i ich stany" />
+			</f:facet>
+			<rich:column width="50px">
+				<f:facet name="header">
+					<h:outputText value="ID" />
+				</f:facet>
+				<h:outputText value="#{info.o1.id}" />
+			</rich:column>
+			<rich:column width="250px">
+				<f:facet name="header">
+					<h:outputText value="Nazwa" />
+				</f:facet>
+				<h:outputText value="#{info.o1.name}" />
+			</rich:column>
+			<rich:column width="450">
+				<f:facet name="header">
+					<h:outputText value="Opis" />
+				</f:facet>
+				<h:outputText value="#{info.o1.description}" />
+			</rich:column>
+			<rich:column width="50px">
+				<f:facet name="header">
+					<h:outputText value="Inicjalny stan" />
+				</f:facet>
+				<h:outputText value="#{info.o1.initialState}" />
+			</rich:column>
+			<rich:column width="50px">
+				<f:facet name="header">
+					<h:outputText value="Aktualy stan" />
+				</f:facet>
+				<h:outputText value="#{info.o2}" />
+			</rich:column>
+		</rich:extendedDataTable>
+	</ui:define>
+</ui:composition>

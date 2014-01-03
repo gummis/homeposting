@@ -1,9 +1,15 @@
 package homeposting.app.common.data.util;
 
-public class Pair<O1,O2>{
+import java.io.Serializable;
+
+@SuppressWarnings("serial")
+public class Pair<O1,O2> implements Serializable {
 	protected O1 o1;
 	protected O2 o2;
 
+	public Pair(){
+	}
+	
 	public Pair(O1 o1, O2 o2){
 		this.o1 = o1;
 		this.o2 = o2;

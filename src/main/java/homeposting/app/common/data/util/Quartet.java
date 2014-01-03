@@ -1,6 +1,9 @@
 package homeposting.app.common.data.util;
 
-public class Quartet<O1,O2,O3,O4>{
+import java.io.Serializable;
+
+@SuppressWarnings("serial")
+public class Quartet<O1,O2,O3,O4> implements Serializable {
 	protected O1 o1;
 	protected O2 o2;
 	protected O3 o3;	

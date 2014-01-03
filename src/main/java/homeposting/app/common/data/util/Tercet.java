@@ -1,7 +1,10 @@
 package homeposting.app.common.data.util;
 
+import java.io.Serializable;
 
-public class Tercet<O1,O2,O3>{
+
+@SuppressWarnings("serial")
+public class Tercet<O1,O2,O3> implements Serializable {
 	protected O1 o1;
 	protected O2 o2;
 	protected O3 o3;	
