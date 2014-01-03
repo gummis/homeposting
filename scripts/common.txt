@@ -1,2 +1,10 @@
+Zapytania postgresql
 Zamiana nazwy kolumny w tabeli:
 ALTER TABLE TRANSACTIONTAB RENAME  COLUMN  IDENTITY_NUM TO IDENTIFIER;
+
+//====================
+Komendy w plsql:
+//++++++++++++++++++++
+pobranie struktry tabeli:
+\d+ <table_name>
+//====================
