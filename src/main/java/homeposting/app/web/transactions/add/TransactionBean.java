@@ -118,7 +118,7 @@ public class TransactionBean implements Serializable {
 		transaction.setIdentifier(getIdentifier());
 		transaction.setPostingDate(new Date());
 		transaction.setTransactionSubkind(getTransactionSubkind());
-		Set<AccountFlow> flows = new HashSet<AccountFlow>();
+		List<AccountFlow> flows = new ArrayList<AccountFlow>();
 		for(FlowBean fb : getFlows()){
 			AccountFlow af = new AccountFlow();
 			af.setFlow(fb.getCash());
@@ -127,7 +127,23 @@ public class TransactionBean implements Serializable {
 			flows.add(af);
 		}
 		transaction.setFlows(flows);
+		verify(transaction);
 		return transaction;
+	}
+
+	private void verify(Transaction transaction) {
+		//zaden z przeplywów nie moze być zerowy oraz nie moze byc powtorzenia konta
+		Set<Integer> ids = new HashSet<Integer>();
+		
+		for(AccountFlow af : transaction.getFlows()){
+			if(af.getFlow() == 0 ){
+				throw new RuntimeException("Jeden z przeływów jest zerowy");
+			}
+			if(ids.contains(af.getAccount().getId())){
+				throw new RuntimeException("Nie mogą wystąpić więcej niż jeden przepływy dla jednego konta");
+			}
+			ids.add(af.getAccount().getId());
+		}
 	}
 	
 }

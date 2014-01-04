@@ -1,10 +1,10 @@
 package homeposting.app.web.transactions.manager;
 
-import java.util.List;
-
+import homeposting.app.common.domain.TransactionWrapper;
 import homeposting.app.common.security.Security;
-import homeposting.app.domain.entities.Transaction;
 import homeposting.app.ejb.TransactionsDao;
+
+import java.util.List;
 
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
@@ -27,11 +27,16 @@ public class TransactionsManagerBean {
 	
 	private TransactionsManagerModel model;
 
-	public List<Transaction> getTransactions(){
+	public List<TransactionWrapper> getTransactions(){
 		if(model == null){
 			model = new TransactionsManagerModel(transactionsDao);
 		}
 		return model.getTransactions();
+	}
+	
+	public String getColorClasses(){
+		getTransactions();
+		return model.getColorClasses();
 	}
 	
 }

@@ -52,7 +52,7 @@ public class Transaction implements Serializable {
 	private String identifier;
 	
 	@OneToMany(mappedBy="transaction", cascade = {CascadeType.PERSIST})
-	private Set<AccountFlow> flows;
+	private List<AccountFlow> flows;
 	
 	@ManyToOne()
     @JoinColumn(name = "TRANS_SUB_KIND_REF")  
@@ -102,11 +102,11 @@ public class Transaction implements Serializable {
 		this.identifier = identifier;
 	}
 
-	public Set<AccountFlow> getFlows() {
+	public List<AccountFlow> getFlows() {
 		return flows;
 	}
 
-	public void setFlows(Set<AccountFlow> flows) {
+	public void setFlows(List<AccountFlow> flows) {
 		this.flows = flows;
 	}
 

@@ -10,7 +10,7 @@
 	<ui:define name="content">
 		<rich:extendedDataTable
 			value="#{transactionsManagerBean.transactions}" var="transaction"
-			id="transactionsTable" selectionMode="none">
+			id="transactionsTable" selectionMode="none" rowClasses="#{transactionsManagerBean.colorClasses}">
 			<f:facet name="header">
 				<h:outputText value="Wykonane transakcje" />
 			</f:facet>
@@ -19,49 +19,83 @@
 				<f:facet name="header">
 					<h:outputText value="ID" />
 				</f:facet>
-				<h:outputText value="#{transaction.id}" />
+				<h:outputText value="#{transaction.transaction.id}" />
 			</rich:column>
+			<rich:column width="100px">
+				<f:facet name="header">
+					<h:outputText value="Typ" />
+				</f:facet>
+				<h:outputText value="#{transaction.type.presentationName}" />
+			</rich:column>
+			<!--
+			<rich:column width="100px">
+				<f:facet name="header">
+					<h:outputText value="Konta" />
+				</f:facet>
+				<h:panelGrid columns="1">
+					<h:outputText value="1111111111" />
+					<h:outputText value="2222222222" />
+					<h:outputText value="3333333333" />
+				<c:forEach var="line" items="#{transaction.lines}">
+					<h:outputText value="#{line.o1}" />
+				</c:forEach>
+				</h:panelGrid>
+			</rich:column>
+			<rich:column width="100px">
+				<f:facet name="header">
+					<h:outputText value="Przepływy" />
+				</f:facet>
+				<h:panelGrid columns="1">
+					<h:outputText value="4444444444" />
+					<h:outputText value="5555555555" />
+					<h:outputText value="6666666666" />
+				<c:forEach var="line" items="#{transaction.lines}">
+					<h:outputText value="#{line.o2}" />
+				</c:forEach>
+				</h:panelGrid>
+			</rich:column>
+			-->
 			<rich:column width="250px">
 				<f:facet name="header">
 					<h:outputText value="Przepływ" />
 				</f:facet>
-				<h:outputText value="#{transaction.flowString}" />
+				<h:outputText value="#{transaction.transaction.flowString}" />
 			</rich:column>
 			<rich:column width="250">
 				<f:facet name="header">
 					<h:outputText value="Typ" />
 				</f:facet>
-				<h:outputText value="#{transaction.transactionSubkind.transactionKind.name} - #{transaction.transactionSubkind.name}" />
+				<h:outputText value="#{transaction.transaction.transactionSubkind.transactionKind.name} - #{transaction.transaction.transactionSubkind.name}" />
 			</rich:column>
 			<rich:column width="100px">
 				<f:facet name="header">
 					<h:outputText value="Zaksięgowano" />
 				</f:facet>
-				<h:outputText value="#{transaction.postingDate}" />
+				<h:outputText value="#{transaction.transaction.postingDate}" />
 			</rich:column>
 			<rich:column width="100px">
 				<f:facet name="header">
 					<h:outputText value="Data zdarzenia" />
 				</f:facet>
-				<h:outputText value="#{transaction.eventDate}" />
+				<h:outputText value="#{transaction.transaction.eventDate}" />
 			</rich:column>
 			<rich:column width="5%">
 				<f:facet name="header">
 					<h:outputText value="Dodał" />
 				</f:facet>
-				<h:outputText value="#{transaction.creator.name}" />
+				<h:outputText value="#{transaction.transaction.creator.name}" />
 			</rich:column>
 			<rich:column width="100px">
 				<f:facet name="header">
 					<h:outputText value="Opis" />
 				</f:facet>
-				<h:outputText value="#{transaction.description}" />
+				<h:outputText value="#{transaction.transaction.description}" />
 			</rich:column>
 			<rich:column width="100px">
 				<f:facet name="header">
 					<h:outputText value="Identyfikator" />
 				</f:facet>
-				<h:outputText value="#{transaction.identifier}" />
+				<h:outputText value="#{transaction.transaction.identifier}" />
 			</rich:column>
 			
 		</rich:extendedDataTable>

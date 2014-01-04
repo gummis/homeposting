@@ -16,3 +16,25 @@
 	text-decoration:none;
 	font-weight:normal;	
 }
+
+.kindcol_cost{
+	background-color: #FF8080;
+}
+.kindcol_profit{
+	background-color: #80FF80;
+}
+.kindcol_transfer{
+	background-color: #FFFF80;
+}
+.kindcol_transfer_cost{
+	background-color: #D5CA80;
+}
+.kindcol_multicost{
+	background-color: #FF4040;
+}
+.kindcol_multiprofit{
+	background-color: #40FF40;
+}
+.kindcol_other{
+	background-color: #8080FF;
+}

@@ -35,8 +35,13 @@ public class CashConverter implements Converter {
 	}
 	
 	public static String fromInteger(int ivalue){
+		int pounds = Math.abs(ivalue / 100);
 		int cents = Math.abs(ivalue % 100);
-		StringBuilder sb = new StringBuilder().append(ivalue / 100).append(".");
+		StringBuilder sb = new StringBuilder();
+		if(ivalue < 0){
+			sb.append("-");
+		}
+		sb.append(pounds).append(".");
 		if(cents < 10){
 			sb.append("0");
 		}
