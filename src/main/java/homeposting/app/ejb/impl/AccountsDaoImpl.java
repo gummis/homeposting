@@ -19,7 +19,7 @@ public class AccountsDaoImpl implements AccountsDao {
 	
 	@SuppressWarnings("unchecked")
 	public List<Pair<Account,Integer>> getAccountsInfo(){
-		Query q = em.createQuery("select new homeposting.app.common.data.util.Pair(a,a.initialState + sum(af.flow)) from AccountFlow af join af.account a group by a");
+		Query q = em.createQuery("select new homeposting.app.common.data.util.Pair(a,a.initialState + coalesce(sum(af.flow),0)) from AccountFlow af right join af.account a group by a");
 		return q.getResultList();
 	}
 

@@ -19,6 +19,10 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+import org.hibernate.annotations.BatchSize;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
+
 @Entity()
 @Table(name = "TRANSACTIONTAB")
 public class Transaction implements Serializable {
@@ -48,7 +52,9 @@ public class Transaction implements Serializable {
 	@Column(name = "IDENTIFIER")
 	private String identifier;
 	
-	@OneToMany(mappedBy="transaction", cascade = {CascadeType.PERSIST})
+	@OneToMany(mappedBy="transaction", cascade = {CascadeType.PERSIST} )
+	@Fetch(FetchMode.SELECT)
+	@BatchSize(size = 1000)
 	private List<AccountFlow> flows;
 	
 	@ManyToOne()
