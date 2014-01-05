@@ -9,7 +9,7 @@
 	>
 	<ui:define name="content">
 		<rich:extendedDataTable
-			value="#{transactionsManagerBean.transactions}" var="transaction"
+			value="#{transactionsManagerBean.transactions}" var="transaction" frozenColumns="4"
 			id="transactionsTable" selectionMode="none" rowClasses="#{transactionsManagerBean.colorClasses}">
 			<f:facet name="header">
 				<h:outputText value="Wykonane transakcje" />
@@ -21,43 +21,30 @@
 				</f:facet>
 				<h:outputText value="#{transaction.transaction.id}" />
 			</rich:column>
-			<rich:column width="100px">
+			<rich:column width="90px">
 				<f:facet name="header">
 					<h:outputText value="Typ" />
 				</f:facet>
 				<h:outputText value="#{transaction.type.presentationName}" />
 			</rich:column>
-			<!--
-			<rich:column width="100px">
+
+			<rich:column width="200px">
 				<f:facet name="header">
 					<h:outputText value="Konta" />
 				</f:facet>
-				<h:panelGrid columns="1">
-					<h:outputText value="1111111111" />
-					<h:outputText value="2222222222" />
-					<h:outputText value="3333333333" />
-				<c:forEach var="line" items="#{transaction.lines}">
-					<h:outputText value="#{line.o1}" />
-				</c:forEach>
-				</h:panelGrid>
+				<h:outputText value="#{transaction.accountsInfo}" />
 			</rich:column>
-			<rich:column width="100px">
+
+			<rich:column width="70px">
 				<f:facet name="header">
 					<h:outputText value="Przepływy" />
 				</f:facet>
-				<h:panelGrid columns="1">
-					<h:outputText value="4444444444" />
-					<h:outputText value="5555555555" />
-					<h:outputText value="6666666666" />
-				<c:forEach var="line" items="#{transaction.lines}">
-					<h:outputText value="#{line.o2}" />
-				</c:forEach>
-				</h:panelGrid>
+				<h:outputText value="#{transaction.cashInfo}" />
 			</rich:column>
-			-->
+
 			<rich:column width="250px">
 				<f:facet name="header">
-					<h:outputText value="Przepływ" />
+					<h:outputText value="Przepływ (do usuniecia)" />
 				</f:facet>
 				<h:outputText value="#{transaction.transaction.flowString}" />
 			</rich:column>
@@ -65,7 +52,7 @@
 				<f:facet name="header">
 					<h:outputText value="Typ" />
 				</f:facet>
-				<h:outputText value="#{transaction.transaction.transactionSubkind.transactionKind.name} - #{transaction.transaction.transactionSubkind.name}" />
+				<h:outputText value="#{transaction.transaction.transactionSubkind.transactionKind.name} - #{transaction.transaction.transactionSubkind.name}"  />
 			</rich:column>
 			<rich:column width="100px">
 				<f:facet name="header">

@@ -5,7 +5,6 @@ import homeposting.app.common.jsf.CashConverter;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
-import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -19,8 +18,6 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-
-import com.ocpsoft.pretty.faces.config.convert.CaseConverter;
 
 @Entity()
 @Table(name = "TRANSACTIONTAB")
@@ -136,5 +133,13 @@ public class Transaction implements Serializable {
 			sb.append(CashConverter.fromInteger(af.getFlow()));
 		}
 		return sb.toString();
+	}
+
+	public int getSum() {
+		int sum = 0;
+		for(AccountFlow af: flows){
+			sum += af.getFlow();
+		}
+		return sum;
 	}
 }

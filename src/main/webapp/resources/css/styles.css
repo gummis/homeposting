@@ -38,3 +38,8 @@
 .kindcol_other{
 	background-color: #8080FF;
 }
+
+.table_font {
+	font-family:Verdana, Arial, Helvetica, sans-serif;
+	font-size: 12px;
+}
