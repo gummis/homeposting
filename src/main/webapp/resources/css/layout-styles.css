@@ -31,11 +31,27 @@ div, h1, h2, h3, h4, h5, h6, p, ul, ol, li, form{
 }
 .header-img {
 	width: 1495px;
-	float: left;
-	background:url("#{resource['images:header.jpg']}") no-repeat left top;
 	height:161px;
 }
-.header-img h1 {
+.header-img-left {
+	width: 277px;
+	float: left;
+	background:url("#{resource['images:left_header.jpg']}") no-repeat left top;
+	height:161px;
+}
+.header-img-right {
+	width: 274px;
+	float: left;
+	background:url("#{resource['images:right_header.jpg']}") no-repeat right top;
+	height:161px;
+}
+.header-img-middle {
+	width: 944px;
+	float: left;
+	background:url("#{resource['images:middle_header.jpg']}") repeat-x left top;
+	height:161px;
+}
+.header-img-middle h1 {
 	padding: 50px 0px 0px 350px;
 	margin: 0px;
 	font-family:Verdana, Arial, Helvetica, sans-serif;
