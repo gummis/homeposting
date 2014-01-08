@@ -28,11 +28,11 @@
 
         				<h:outputLabel for="inputIdentField" styleClass="labelStyle" value="Typ transakcji: "/>
 						<h:panelGrid columns="2">
-							<rich:select defaultLabel="Brak typu" enableManualInput="false" value="#{addGeneralTransactionManagedBean.transaction.transactionKindId}">
+							<rich:select defaultLabel="Brak typu" value="#{addGeneralTransactionManagedBean.transaction.transactionKindId}">
 								<f:selectItems value="#{addGeneralTransactionManagedBean.subsystem.transactionsKindsItems}"/>
-    							<a4j:ajax event="change" render="inputTransactionSubkindField" immediate="true"/>
+    							<a4j:ajax event="selectitem" render="inputTransactionSubkindField" immediate="true"/>
 							</rich:select>
-							<rich:select id="inputTransactionSubkindField" defaultLabel="Brak podtypu" enableManualInput="false" value="#{addGeneralTransactionManagedBean.transaction.transactionSubkindId}">
+							<rich:select id="inputTransactionSubkindField" defaultLabel="Brak podtypu" value="#{addGeneralTransactionManagedBean.transaction.transactionSubkindId}">
 								<f:selectItems value="#{addGeneralTransactionManagedBean.transaction.subkindItems}"/>
 							</rich:select>
 						</h:panelGrid>
