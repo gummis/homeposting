@@ -12,17 +12,17 @@ public class ContextSession {
 	
 	public String getMainContextName(){
 		String path = PrettyContext.getCurrentInstance().getContextPath();
-		Logger.getLogger("PATH").info(path);
+		//Logger.getLogger("PATH").info(path);
 		path = PrettyContext.getCurrentInstance().getCurrentViewId();
-		Logger.getLogger("CURRENT").info(path);
+		//Logger.getLogger("CURRENT").info(path);
 		path = PrettyContext.getCurrentInstance().getDynaViewId();
-		Logger.getLogger("DYNA").info(path);
+		//Logger.getLogger("DYNA").info(path);
 
 		UrlMapping urlmap = PrettyContext.getCurrentInstance().getCurrentMapping();
-		Logger.getLogger("ID").info(urlmap.getId());
+		/*Logger.getLogger("ID").info(urlmap.getId());
 		Logger.getLogger("PARENT").info(urlmap.getParentId());
 		Logger.getLogger("PATTERN").info(urlmap.getPattern());
-		Logger.getLogger("VIEW").info(urlmap.getViewId());
+		Logger.getLogger("VIEW").info(urlmap.getViewId());*/
 
 		String pattern = urlmap.getPattern();
 		String result;
@@ -36,7 +36,7 @@ public class ContextSession {
 				result = pattern.substring(1,nextIndex);
 			}
 		}
-		Logger.getLogger("RESULT").info("'" + result + "'");
+		//Logger.getLogger("RESULT").info("'" + result + "'");
 		return result;
 	}
 }

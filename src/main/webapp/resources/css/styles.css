@@ -8,7 +8,13 @@
 	font-weight:normal;
 	line-height:18px;
 }
-
+.spacer50{
+	width: 50px;
+	float: left;
+}
+.floatleft{
+	float: left;
+}
 .textStyle{
 	font-family:Verdana, Arial, Helvetica, sans-serif;
 	font-size: 12px;

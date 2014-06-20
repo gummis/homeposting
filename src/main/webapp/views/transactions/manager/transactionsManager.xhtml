@@ -5,86 +5,193 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:rich="http://richfaces.org/rich"
 	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:a4j="http://richfaces.org/a4j"
 	template="../../../template/layout.xhtml"
 	>
 	<ui:define name="content">
-		<rich:extendedDataTable
-			value="#{transactionsManagerBean.transactions}" var="transaction" frozenColumns="4"
-			id="transactionsTable" selectionMode="none" rowClasses="#{transactionsManagerBean.colorClasses}">
-			<f:facet name="header">
-				<h:outputText value="Wykonane transakcje" />
-			</f:facet>
+		<f:view>
+		<h:form id="transactionManagerFormId">
+	        	<!-- TOOLBAR -->
+	        	<a4j:region>
+	        	<rich:toolbar>
+	            	<a4j:commandLink id="newTransactionLink" value="#{transactionsManagerBean.actions} #{transactionsManagerBean.counter}" 
+	            	execute="#{transactionsManagerBean.setCurrentIdRow(0,-1)}" render="editTransactionPanelId">
+                        <h:graphicImage library="images" name="new.png"  />
+                        <rich:componentControl target="editTransactionPanelId" event="click" operation="show"  />
+	                </a4j:commandLink>
+	        	</rich:toolbar>
+	        	</a4j:region>
+	        	<!-- TABELA -->
+	            <rich:extendedDataTable value="#{transactionsManagerBean.transactions}"
+	                var="transaction" frozenColumns="4" rowKeyVar="row"
+	                id="transactionsTable" selectionMode="none" 
+	                rowClasses="#{transactionsManagerBean.colorClasses}"
+				>
+					<f:facet name="header">
+						<h:outputText value="Wykonane transakcje" />
+					</f:facet>
+					<rich:column width="32px">
+						<f:facet name="header">
+							<h:outputText value="#" />
+						</f:facet>
+	                    <a4j:commandLink ajaxSingle="true" id="editTransactionsLink"
+	                        oncomplete="#{rich:component('editTransactionPanelId')}.show()">
+	                        <f:setPropertyActionListener value="#{transaction.transaction.id}" target="#{transactionsManagerBean.currentId}" />
+	                        <f:setPropertyActionListener value="#{row}" target="#{transactionsManagerBean.currentRow}" />
+	                        <h:graphicImage library="images" name="edit.png"  />
+	                    </a4j:commandLink>
+	                    <rich:tooltip for="editTransactionslink" value="Kliknij by edytować lub usunąc" />
+					</rich:column>
+					<rich:column width="50px">
+						<f:facet name="header">
+							<h:outputText value="ID" />
+						</f:facet>
+						<h:outputText value="#{transaction.transaction.id}"/>
+					</rich:column>
+					<rich:column width="90px">
+						<f:facet name="header">
+							<h:outputText value="Typ" />
+						</f:facet>
+						<h:outputText value="#{transaction.type.presentationName}" />
+					</rich:column>
+		
+					<rich:column width="200px">
+						<f:facet name="header">
+							<h:outputText value="Konta" />
+						</f:facet>
+						<h:outputText value="#{transaction.accountsInfo}" />
+					</rich:column>
+		
+					<rich:column width="70px">
+						<f:facet name="header">
+							<h:outputText value="Przepływy" />
+						</f:facet>
+						<h:outputText value="#{transaction.cashInfo}" />
+					</rich:column>
+		
+					<rich:column width="250px">
+						<f:facet name="header">
+							<h:outputText value="Przepływ (do usuniecia)" />
+						</f:facet>
+						<h:outputText value="#{transaction.transaction.flowString}" />
+					</rich:column>
+					<rich:column width="250">
+						<f:facet name="header">
+							<h:outputText value="Typ" />
+						</f:facet>
+						<h:outputText value="#{transaction.transaction.transactionSubkind.transactionKind.name} - #{transaction.transaction.transactionSubkind.name}"  />
+					</rich:column>
+					<rich:column width="100px">
+						<f:facet name="header">
+							<h:outputText value="Zaksięgowano" />
+						</f:facet>
+						<h:outputText value="#{transaction.transaction.postingDate}" />
+					</rich:column>
+					<rich:column width="100px">
+						<f:facet name="header">
+							<h:outputText value="Data zdarzenia" />
+						</f:facet>
+						<h:outputText value="#{transaction.transaction.eventDate}" />
+					</rich:column>
+					<rich:column width="5%">
+						<f:facet name="header">
+							<h:outputText value="Dodał" />
+						</f:facet>
+						<h:outputText value="#{transaction.transaction.creator.name}" />
+					</rich:column>
+					<rich:column width="100px">
+						<f:facet name="header">
+							<h:outputText value="Opis" />
+						</f:facet>
+						<h:outputText value="#{transaction.transaction.description}" />
+					</rich:column>
+					<rich:column width="100px">
+						<f:facet name="header">
+							<h:outputText value="Identyfikator" />
+						</f:facet>
+						<h:outputText value="#{transaction.transaction.identifier}" />
+					</rich:column>
+				</rich:extendedDataTable>
 
-			<rich:column width="50px">
-				<f:facet name="header">
-					<h:outputText value="ID" />
-				</f:facet>
-				<h:outputText value="#{transaction.transaction.id}" />
-			</rich:column>
-			<rich:column width="90px">
-				<f:facet name="header">
-					<h:outputText value="Typ" />
-				</f:facet>
-				<h:outputText value="#{transaction.type.presentationName}" />
-			</rich:column>
+	       		<!-- EDYTOR TRANSAKCJI -->
+		        <a4j:outputPanel id="editTransactionA4JPanelId">
+				<rich:popupPanel modal="true" id="editTransactionPanelId" autosized="false" width="500" height="450">
+			        <f:facet name="header">
+			        	<c:choose>
+				        	<c:when test="#{transactionsManagerBean.editTransactionBean.transaction.new}">
+					            <h:outputText value="Dodanie nowej transakcji #{transactionsManagerBean.actions} #{transactionsManagerBean.counter}" />
+				        	</c:when>
+				        	<c:otherwise>
+					            <h:outputText value="Edycja transakcji (#{transactionsManagerBean.editTransactionBean.transaction.id})" />
+				        	</c:otherwise>
+			        	</c:choose>
+			        </f:facet>
+			        
+			        <f:facet name="controls">
+					   <h:commandLink>
+					       <h:graphicImage library="images" name="closeModal.png" id="hideEditTransactionPanellink" styleClass="hidelink" />
+					       <rich:componentControl target="editTransactionPanelId" event="click" operation="hide"  />
+					   </h:commandLink>
+			        </f:facet>
+			        
+		            	<rich:messages style="color:red;"></rich:messages>
+			        	<!-- WNETRZE EDYTORA action="#{transactionsManagerBean.addFlowAction}"-->
 
-			<rich:column width="200px">
-				<f:facet name="header">
-					<h:outputText value="Konta" />
-				</f:facet>
-				<h:outputText value="#{transaction.accountsInfo}" />
-			</rich:column>
+		      			<h:panelGrid columns="2" >
+		      				<h:outputLabel for="inputTransDescrField" styleClass="labelStyle" value="Opis: "/>
+							<h:inputTextarea id="inputTransDescrField" rows="4" cols="51" value="#{transactionsManagerBean.editTransactionBean.transaction.description}" />
+	
+		      				<h:outputLabel for="inputTransEventDateField" styleClass="labelStyle" value="Data transakcji: "/>
+							<rich:calendar id="inputTransEventDateField" value="#{transactionsManagerBean.editTransactionBean.transaction.eventDate}" datePattern="yyyy-MM-dd HH:mm"/>
+	
+	        				<h:outputLabel for="inputIdentField" styleClass="labelStyle" value="Identyfikator transkacji: "/>
+							<h:inputText id="inputIdentField" value="#{transactionsManagerBean.editTransactionBean.transaction.identifier}" size="50" />
+	
+	        				<h:outputLabel for="inputTransactionKindField" styleClass="labelStyle" value="Typ transakcji: "/>
+							<rich:select id="inputTransactionKindField" defaultLabel="Brak typu" value="#{transactionsManagerBean.editTransactionBean.transaction.transactionKindId}">
+								<f:selectItems value="#{transactionsManagerBean.editTransactionBean.subsystem.transactionsKindsItems}"/>
+    							<a4j:ajax event="selectitem" render="inputTransactionSubkindField" immediate="true"/>
+							</rich:select>
 
-			<rich:column width="70px">
-				<f:facet name="header">
-					<h:outputText value="Przepływy" />
-				</f:facet>
-				<h:outputText value="#{transaction.cashInfo}" />
-			</rich:column>
+	        				<h:outputLabel for="inputTransactionSubkindField" styleClass="labelStyle" value="Podtyp transakcji: "/>
+							<rich:select id="inputTransactionSubkindField" defaultLabel="Brak podtypu" value="#{transactionsManagerBean.editTransactionBean.transaction.transactionSubkindId}">
+								<f:selectItems value="#{transactionsManagerBean.editTransactionBean.transaction.subkindItems}"/>
+							</rich:select>
 
-			<rich:column width="250px">
-				<f:facet name="header">
-					<h:outputText value="Przepływ (do usuniecia)" />
-				</f:facet>
-				<h:outputText value="#{transaction.transaction.flowString}" />
-			</rich:column>
-			<rich:column width="250">
-				<f:facet name="header">
-					<h:outputText value="Typ" />
-				</f:facet>
-				<h:outputText value="#{transaction.transaction.transactionSubkind.transactionKind.name} - #{transaction.transaction.transactionSubkind.name}"  />
-			</rich:column>
-			<rich:column width="100px">
-				<f:facet name="header">
-					<h:outputText value="Zaksięgowano" />
-				</f:facet>
-				<h:outputText value="#{transaction.transaction.postingDate}" />
-			</rich:column>
-			<rich:column width="100px">
-				<f:facet name="header">
-					<h:outputText value="Data zdarzenia" />
-				</f:facet>
-				<h:outputText value="#{transaction.transaction.eventDate}" />
-			</rich:column>
-			<rich:column width="5%">
-				<f:facet name="header">
-					<h:outputText value="Dodał" />
-				</f:facet>
-				<h:outputText value="#{transaction.transaction.creator.name}" />
-			</rich:column>
-			<rich:column width="100px">
-				<f:facet name="header">
-					<h:outputText value="Opis" />
-				</f:facet>
-				<h:outputText value="#{transaction.transaction.description}" />
-			</rich:column>
-			<rich:column width="100px">
-				<f:facet name="header">
-					<h:outputText value="Identyfikator" />
-				</f:facet>
-				<h:outputText value="#{transaction.transaction.identifier}" />
-			</rich:column>
-			
-		</rich:extendedDataTable>
+		      			</h:panelGrid>
+		      			
+		      			<rich:dataTable id="addGeneralTransactionFlowsTableId" value="#{transactionsManagerBean.editTransactionBean.transaction.flows}" var="flow" >
+		   					<f:facet name="header">Przepływy pieniężne</f:facet>
+		       				<rich:column>
+		   						<f:facet name="header">Konto</f:facet>
+		   						<rich:select  defaultLabel="Brak konta" enableManualInput="false" value="#{flow.accountId}" selectFirst="true">
+							    	<f:selectItems value="#{transactionsManagerBean.editTransactionBean.subsystem.accountsItems}"/>
+			      				</rich:select>
+				    		</rich:column>
+		       				<rich:column>
+		   						<f:facet name="header">Kwota</f:facet>
+		   						<rich:inputNumberSpinner value="#{flow.cash}" minValue="-2000000000" maxValue="2000000000" ></rich:inputNumberSpinner>
+				    		</rich:column>
+		       				<rich:column>
+		   						<f:facet name="header">Akcja</f:facet>
+		   						<a4j:commandLink ajaxSingle="true" id="deleteTransactionFlowLink">
+			                        <h:graphicImage library="images" name="delete.png"  />
+	    		                </a4j:commandLink>
+				    		</rich:column>
+		      			</rich:dataTable>
+		      			<a4j:commandLink ajaxSingle="true" id="newTransactionFlowLink" action="#{transactionsManagerBean.editTransactionBean.addFlowAction}" render="editTransactionA4JPanelId">
+		                   <h:graphicImage library="images" name="new.png"  />
+		                </a4j:commandLink>
+		      			<a4j:commandLink ajaxSingle="true" id="deleteTransactionLink" >
+		                   <h:graphicImage library="images" name="deleteBig.png"  />
+		                </a4j:commandLink>
+		      			<a4j:commandLink ajaxSingle="true" id="saveTransactionLink" action="#{transactionsManagerBean.editTransactionBean.saveGeneralTransactionAction}" >
+		                   <h:graphicImage library="images" name="save.png"  />
+		                </a4j:commandLink>
+		        	<!-- KONIEC -->
+		    	</rich:popupPanel>
+				</a4j:outputPanel>
+		 </h:form>
+		 </f:view>
 	</ui:define>
 </ui:composition>

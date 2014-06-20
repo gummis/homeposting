@@ -11,4 +11,5 @@ public interface TransactionsDao {
 	public void createTransaction(Transaction transaction);
 	public long getCountAllTransactions();
 	public List<Transaction> getTransactions(int firstElementInd, int length, boolean orderAsc);
+	public Transaction getTransactionById(Integer transactionId);
 }

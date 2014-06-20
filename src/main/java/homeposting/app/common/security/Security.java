@@ -1,13 +1,20 @@
 package homeposting.app.common.security;
 
+import java.io.IOException;
+
+import javax.faces.context.FacesContext;
+import javax.faces.convert.FacesConverter;
+
 import homeposting.app.domain.entities.Subsystem;
 import homeposting.app.domain.entities.User;
 import homeposting.app.web.SessionBean;
 
 public class Security {
 	public static void logged(){
-		if(SessionBean.getInstance().getUser() == null)
+		if(SessionBean.getInstance().getUser() == null){
+			redirectMain();
 			throw new RuntimeException("Użytkownik musi być zalogowany w celu przeglądania tej strony");
+		}
 	}
 	public static void unlogged() {
 		if(SessionBean.getInstance().getUser() != null)
@@ -27,4 +34,11 @@ public class Security {
 	}
 
 
+	private static void redirectMain(){
+		try {
+			FacesContext.getCurrentInstance().getExternalContext().redirect("/");
+		} catch (IOException e) {
+			throw new RuntimeException("Nieudane przekierowanie na stronę główną");
+		}
+	}
 }

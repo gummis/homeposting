@@ -1,5 +1,6 @@
 package homeposting.app.ejb.impl;
 
+import homeposting.app.domain.entities.AccountFlow;
 import homeposting.app.domain.entities.Transaction;
 import homeposting.app.ejb.TransactionsDao;
 
@@ -43,6 +44,12 @@ public class TransactionsDaoImpl implements TransactionsDao {
 			transaction.getFlows().size();
 		}
 		return elements;
+	}
+
+	public Transaction getTransactionById(Integer transactionId) {
+		Transaction transaction = em.find(Transaction.class, transactionId);
+		transaction.getFlows().size();
+		return transaction;
 	}
 
 }
